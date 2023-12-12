@@ -1,0 +1,185 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <style>
+      pre {
+        background-color: transparent;
+      }
+      button {
+        width: fit-content;
+      }
+    </style>
+    <title>Document</title>
+  </head>
+  <body>
+    <main class="container">
+      <article>
+        <h2>HTTP & Fetch API</h2>
+        <p>
+          <strong>HTTP</strong> (HyperText Transfer Protocol) is a protocol for
+          transferring hypertext. It is a set of rules for transferring data
+          between computers and servers on the Internet. HTTP is the template
+          for data transfer requests. It consists of text only. However, it
+          transfers all kinds of file formats, such as video, audio, and text.
+        </p>
+        <p>
+          <strong>Fetch API</strong> provides an interface for fetching
+          resources (including across the network). It is a more powerful and
+          flexible replacement for XMLHttpRequest.
+        </p>
+        <p>It is a global method in both Window and Worker contexts.</p>
+      </article>
+      <article style="background-color: white">
+        <img src="./1.png" alt="" />
+      </article>
+      <article style="background-color: white">
+        <img src="./2.jpg" alt="" />
+      </article>
+      <article>
+        <h2>Kiedy wykonuje się requesty</h2>
+        <ul>
+          <li>Na eventach</li>
+          <li>W momencie zmiany wartości jakiejś zmiennej</li>
+          <li>*W określonym czasie</li>
+        </ul>
+      </article>
+      <article>
+        <h2>GET</h2>
+        <pre>
+        <code> 
+           fetch('https://dummyjson.com/products/1')
+            .then(res => res.json())
+            .then(json => console.log(json))
+        </code>
+        </pre>
+        <h3>All products</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Price</th>
+              <th>Stock</th>
+              <th>Category</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="product-output"></tbody>
+        </table>
+      </article>
+      <article>
+        <h2>POST</h2>
+        <pre>
+            <code> 
+                fetch("https://dummyjson.com/products/add", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: dataToSendToTheServer,
+                  })
+                    .then((res) => res.json())
+                    .then(console.log);
+                })
+            </code>
+            </pre>
+        <h3>Add product</h3>
+        <form id="add-product">
+          <input type="text" name="title" placeholder="Title" />
+          <input type="text" name="stock" placeholder="Stock" />
+          <input type="text" name="price" placeholder="Price" />
+          <button>Submit</button>
+        </form>
+      </article>
+      <article>
+        <h2>PUT/PATCH</h2>
+        <pre>
+            <code> 
+                fetch('https://dummyjson.com/products/1', {
+                    method: 'PUT', /* or PATCH */
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                      title: 'iPhone Galaxy +1'
+                    })
+                  })
+                  .then(res => res.json())
+                  .then(console.log);
+                              
+            </code>
+            </pre>
+        <h3>Update product</h3>
+        <form id="update-product">
+          <label
+            >ID
+            <input type="text" name="id" value="1" readonly />
+          </label>
+          <input
+            type="text"
+            name="title"
+            placeholder="Title"
+            value="iPhone 9"
+          />
+          <input type="text" name="stock" placeholder="Stock" value="94" />
+          <input type="text" name="price" placeholder="Price" value="549" />
+          <button>Submit</button>
+        </form>
+      </article>
+      <article>
+        <h2>DELETE</h2>
+        <pre>
+            <code> 
+                fetch('https://dummyjson.com/products/1', {
+                    method: 'DELETE',
+                  })
+                  .then(res => res.json())
+                  .then(console.log);
+                              
+            </code>
+            </pre>
+        <h3>Remove product</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Price</th>
+              <th>Stock</th>
+              <th>Category</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="elements-to-delete">
+            <tr>
+              <td>iPhone 9</td>
+              <td>549</td>
+              <td>94</td>
+              <td>smartphones</td>
+              <td><button data-id="1">Delete</button></td>
+            </tr>
+            <tr>
+              <td>MacBook Pro</td>
+              <td>1749</td>
+              <td>83</td>
+              <td>laptops</td>
+              <td><button data-id="6">Delete</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </article>
+      <article>
+        <h2>AUTH</h2>
+      </article>
+    </main>
+
+    <script>
+      hljs.highlightAll();
+    </script>
+    <script src="./index.js"></script>
+  </body>
+</html>
